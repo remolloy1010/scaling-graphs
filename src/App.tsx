@@ -2,12 +2,20 @@ import React, { useState } from 'react';
 import Container from '@material-ui/core/Container';
 import { DataImporter } from './DataImporter';
 import ScalingGraph from './ScalingGraph';
+import Button from '@material-ui/core/Button';
+// import ExampleFile from '../public/Example_File.csv';
 
 const styles = {
   container: {
     paddingTop: 150
   },
+  button: {
+    marginTop: 10,
+    marginRight: 30
+  }
 };
+const ExampleFile =  require("./Example_File.csv")
+
 
 // function to access the key-value pairs from local storage
 // data is the key object, values are taken from imported csv
@@ -53,7 +61,8 @@ function App() {
     
     <Container maxWidth='lg' style={styles.container}>
       <DataImporter onDataUpload={handleDataUpload} /> 
-      <button onClick={clearData}> Clear Data</button>
+      <Button size='small' variant='contained' style={styles.button} href={ExampleFile} download='example-file.csv'> Download Example</Button>
+      <Button size='small' variant='contained' style={styles.button} onClick={clearData}> Clear Data</Button>
       {data.map((d: any, index: any) => <ScalingGraph key={index} data={d} />)}
     </Container>
     </div>  
